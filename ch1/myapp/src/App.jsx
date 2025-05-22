@@ -1,16 +1,17 @@
-import Hello from './hello';
-import Hello2 from './hello2';
+import Hello from './Hello';
+import Hello2 from './Hello2';
+import Hello3 from './Hello3';
 import './App.css';
 
-function App(){
-  const divStyle = {color: 'tomato', height: 50}
+function App() {
+  const divStyle = { color: 'tomato', height: 50 }
 
-  return(
+  return (
     <>
-      <h1>Hello React!</h1>
+      <h1>Hello, React!</h1>
       <h2>첫 번째 Component</h2>
-      <App2/>
-      <div style={{height:20, width:200, color: 'red'}}>
+      <App2 />
+      <div style={{ height: 20, width: 200, color: 'red' }}>
         점심 메뉴는 무엇이었나요?
       </div>
       <div style={divStyle}>
@@ -18,18 +19,20 @@ function App(){
       </div>
 
       <div className="App-header">
-        링크 css 적용
+        링크 CSS 적용
       </div>
-      <Hello/>
-      <Hello2 user='kimi'/>
+      <Hello />
+      <Hello2 firstName='이' lastName='김'/>
+      <Hello2 firstName='삼' lastName='김'/>
+      <Hello3 firstName='사' lastName='김'/>
     </>
   )
 }
 
 function App2() {
-  return (
+  return(
     <>
-      <h2>안녕하세요</h2>
+      <h2>안녕하세요.</h2>
     </>
   )
 }

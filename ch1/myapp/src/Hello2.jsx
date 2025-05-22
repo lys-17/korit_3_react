@@ -1,5 +1,5 @@
 function Hello2(props) {
-  return <h1>Hello Kimi{props.user}</h1>;
-
+  return <h1>Hello Kimi{props.firstName} {props.lastName}</h1>;
 }
-export default Hello2
+
+export default Hello2;
