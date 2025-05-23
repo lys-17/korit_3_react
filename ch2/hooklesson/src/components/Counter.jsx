@@ -1,7 +1,9 @@
 import { useState } from "react";
+import useTitle from "../js/useTitle"
 
 export default function Counter() {
   const [count, setCount] = useState(0);
+  useTitle(`${count}번 클릭`)   // 이건 순수 JS함수. 그래서 작성 방법 상에서의 차이가 있음.
 
   return(
   <div>
@@ -12,4 +14,3 @@ export default function Counter() {
   </div>
   );
 }
-
