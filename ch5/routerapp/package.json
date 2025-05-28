@@ -1,5 +1,5 @@
 {
-  "name": "gitapi",
+  "name": "routerapp",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -10,13 +10,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@tanstack/react-query": "^4.36.1",
-    "ag-grid-community": "^30.1.0",
-    "ag-grid-react": "^30.1.0",
-    "axios": "^1.9.0",
     "react": "^18.2.0",
-    "react-date-picker": "^10.0.3",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.30.1"
   },
   "devDependencies": {
     "@types/react": "^18.2.15",
