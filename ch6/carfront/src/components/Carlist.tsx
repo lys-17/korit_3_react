@@ -1,14 +1,17 @@
 import { useQuery,useMutation, useQueryClient } from "@tanstack/react-query";
 import { getCars, deleteCar } from "../API/carapi";
 import { DataGrid, GridCellParams, GridColDef } from "@mui/x-data-grid";
-import { Snackbar, IconButton} from "@mui/material";
+import { Snackbar, IconButton, Button, Stack} from "@mui/material";
 import AddCar from "./AddCar";
 import { useState } from "react";
 import EditCar from "./EditCar";
 import DeleteIcon from '@mui/icons-material/Delete';
 
+type CarlistProps = {
+  logOut?: () => void;
+}
 
-export default function Carlist() {
+export default function Carlist({logOut}:CarlistProps) {
   const queryClient = useQueryClient();
 
   const [open, setOpen] = useState(false);
@@ -73,8 +76,12 @@ export default function Carlist() {
   else {
     return(
       <>
+      <Stack direction="row" alignItems="center" justifyContent="space-between">
       <AddCar />
-            <DataGrid 
+      <Button variant="outlined" onClick={logOut}>LOGOUT</Button>
+      </Stack>
+
+      <DataGrid 
         rows={data}
         columns={columns}
         disableRowSelectionOnClick = {true}
