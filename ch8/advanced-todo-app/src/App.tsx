@@ -1,26 +1,38 @@
 import './App.css'
-import { useState } from 'react';
+import { useState, useEffect, use } from 'react';
 import type { Todo } from './types/Todo';
 import TodoForm from "./components/TodoForm"
 import {TodoList} from "./components/TodoList"
-import { v4 as uuid } from 'uuid';
+import { addTodoApi, getAllTodos } from './services/todoService';
+// import { v4 as uuid } from 'uuid';
 
 function App() {
-  const [ todos, setTodos ] = useState<Todo[]>(() => {
-    const storedTodos = localStorage.getItem('todos');
-    return storedTodos ? JSON.parse(storedTodos): [];
-  });
+  const [ todos, setTodos ] = useState<Todo[]>([])
+    const [isLoading, setIsLoading] = useState<boolean>(true);
 
-  const addTodo = (text: string) => {
-    const newTodo: Todo = {
-      id: uuid(),
-      text,
-      completed: false,
+  useEffect(() => {
+    const fetchTodosFromServer = async () : Promise<void> => {
+      try{
+        setIsLoading(true);
+        const serverTodos = await getAllTodos();
+        setTodos(serverTodos);
+      } catch (error) {
+        console.log('서버에서 데이터를 가지고 오는 데 실패했습니다 :', error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    fetchTodosFromServer();
+  },[]);
+
+  const handleAddTodo = async (text: string): Promise<void> {
+    try {
+      setIsLoading(true);
+      const newTodo = await addTodoApi(text);
+      setTodos(prevTodos => [...prevTodos, newTodo]);
+    } catch (error) {
+      console.log('todo를 추가하는 데 실패했습니다 : ', error);
     }
-    const updatedTodos = [ ...todos, newTodo ];
-    console.log('updatedTodos --->', updatedTodos);
-    setTodos(updatedTodos);
-    localStorage.setItem('todos', JSON.stringify(updatedTodos));
   }
 
   const deleteTodo = (id: string) => {
