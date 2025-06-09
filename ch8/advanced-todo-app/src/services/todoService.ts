@@ -59,7 +59,7 @@ export const toggleTodoApi =async (id: number, completed:boolean): Promise<Todo>
 
 export const deleteTodoApi = async (id: number): Promise<void> => {
   try {
-    await axios.delete(`${API_BASE_URl}/todos/${id}`);
+    await axios.delete(`${API_BASE_URL}/todos/${id}`);
   } catch (error) {
     console.log(`Error deleting todo ${id} : `, error);
     throw error;
